@@ -26,7 +26,10 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HalamanForm(){
+fun HalamanForm(
+    onSubmitButtonClicked: (MutableList<String>) -> Unit,
+    onBackButtonCLicked: () -> Unit
+){
 
     var namaText by remember {
         mutableStateOf("")
@@ -79,12 +82,11 @@ fun HalamanForm(){
         Row (modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ){
-            Button(onClick = { /*TODO*/ }) {
-                Text(text = stringResource(id = R.string.submit_button))
-            }
-
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = {onBackButtonCLicked}) {
                 Text(text = stringResource(id = R.string.back_button))
+            }
+            Button(onClick = {onSubmitButtonClicked}) {
+                Text(text = stringResource(id = R.string.submit_button))
             }
         }
     }
